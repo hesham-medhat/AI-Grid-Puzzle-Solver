@@ -1,6 +1,8 @@
 package Engine;
 
 public class Solution {
+    /* Instance Variables */
+
     /**
      * Solution path consisting of string states representation from start to finish.
      */
@@ -8,6 +10,8 @@ public class Solution {
 
     private boolean successful;
 
+
+    /* Constructors */
 
     public Solution(String[] path, boolean successful) {
         this.path = path;
@@ -30,6 +34,8 @@ public class Solution {
         successful = false;
     }
 
+
+    /* Getters */
 
     public String[] getPath() {
         return path;
