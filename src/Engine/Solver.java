@@ -46,6 +46,84 @@ public abstract class Solver {
         return solutionState.equals(state);
     }
 
+    protected String moveBlockCoordinates(String state, int r1, int r2, int c1, int c2) {
+        int firstIndex, secondIndex;
+        firstIndex = r1 * columnDimension + c1;
+        secondIndex = r2 * columnDimension + c2;
+
+        return moveBlockIndices(state, firstIndex, secondIndex);
+    }
+
+    protected String moveBlockIndices(String state, int firstIndex, int secondIndex) {
+        if (state == null) {
+            throw new IllegalArgumentException("Passed state as null");
+        }
+
+        int lowerIndex = Math.min(firstIndex, secondIndex);
+        int higherIndex = Math.max(firstIndex, secondIndex);
+
+        StringBuilder sb = new StringBuilder(state.length());
+
+        return sb.append(state.substring(0, lowerIndex))
+                .append(state.charAt(higherIndex))
+                .append(state.substring(lowerIndex + 1, higherIndex))
+                .append(state.charAt(lowerIndex))
+                .append(state.substring(higherIndex + 1))
+                .toString();
+    }
+
+    protected String moveZeroLeft(String state, int zeroRow, int zeroColumn) {
+        if (state == null) {
+            throw new IllegalArgumentException("Passed state as null");
+        }
+
+        if (zeroRow == 0) {
+            return null;// Invalid move
+        }
+        return moveBlockCoordinates(state, zeroRow, zeroRow - 1, zeroColumn, zeroColumn);
+    }
+
+    protected String moveZeroRight(String state, int zeroRow, int zeroColumn) {
+        if (state == null) {
+            throw new IllegalArgumentException("Passed state as null");
+        }
+
+        if (zeroRow == rowDimension - 1) {
+            return null;// Invalid move
+        }
+        return moveBlockCoordinates(state, zeroRow, zeroRow + 1, zeroColumn, zeroColumn);
+    }
+
+    protected String moveZeroUp(String state, int zeroRow, int zeroColumn) {
+        if (state == null) {
+            throw new IllegalArgumentException("Passed state as null");
+        }
+
+        if (zeroColumn == 0) {
+            return null;// Invalid move
+        }
+        return moveBlockCoordinates(state, zeroRow, zeroRow, zeroColumn - 1, zeroColumn);
+    }
+
+    protected String moveZeroDown(String state, int zeroRow, int zeroColumn) {
+        if (state == null) {
+            throw new IllegalArgumentException("Passed state as null");
+        }
+
+        if (zeroColumn == 0) {
+            return null;// Invalid move
+        }
+        return moveBlockCoordinates(state, zeroRow, zeroRow, zeroColumn + 1, zeroColumn );
+    }
+
+    protected int getRowCoordinate(int index) {
+        return index / columnDimension;
+    }
+
+    protected int getColumnCoordinate(int index) {
+        return index % columnDimension;
+    }
+
     /**
      * Used by constructors to initialize solutionState by deducing the shape of the solution state from dimensions
      */
