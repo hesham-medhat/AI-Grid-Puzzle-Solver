@@ -3,12 +3,6 @@ package Engine;
 import java.util.*;
 
 public class BFSSolver extends Solver {
-    /* Instance Variables */
-
-    private HashSet<String> visited;
-    private Queue<String> queue;
-
-
     /* Constructors */
 
     public BFSSolver(int rowDimension, int columnDimension) {
@@ -31,7 +25,7 @@ public class BFSSolver extends Solver {
 
         visitedBy.put(startingState, null);
         if (isSolution(startingState)) {
-            traceSolution(startingState);
+            traceSolution(startingState, visitedBy);
         }
         queue.add(startingState);
 
@@ -49,7 +43,7 @@ public class BFSSolver extends Solver {
             if (nextState != null && !visitedBy.containsKey(nextState)) {// Valid and not visited
                 visitedBy.put(nextState, currentState);// Mark visited and record parent for backtracking
                 if (isSolution(nextState)) {
-                    return traceSolution(nextState);
+                    return traceSolution(nextState, visitedBy);
                 }
                 queue.add(nextState);
             }
@@ -59,7 +53,7 @@ public class BFSSolver extends Solver {
             if (nextState != null && !visitedBy.containsKey(nextState)) {// Valid and not visited
                 visitedBy.put(nextState, currentState);// Mark visited and record parent for backtracking
                 if (isSolution(nextState)) {
-                    return traceSolution(nextState);
+                    return traceSolution(nextState, visitedBy);
                 }
                 queue.add(nextState);
             }
@@ -69,7 +63,7 @@ public class BFSSolver extends Solver {
             if (nextState != null && !visitedBy.containsKey(nextState)) {// Valid and not visited
                 visitedBy.put(nextState, currentState);// Mark visited and record parent for backtracking
                 if (isSolution(nextState)) {
-                    return traceSolution(nextState);
+                    return traceSolution(nextState, visitedBy);
                 }
                 queue.add(nextState);
             }
@@ -79,7 +73,7 @@ public class BFSSolver extends Solver {
             if (nextState != null && !visitedBy.containsKey(nextState)) {// Valid and not visited
                 visitedBy.put(nextState, currentState);// Mark visited and record parent for backtracking
                 if (isSolution(nextState)) {
-                    return traceSolution(nextState);
+                    return traceSolution(nextState, visitedBy);
                 }
                 queue.add(nextState);
             }
@@ -88,9 +82,22 @@ public class BFSSolver extends Solver {
         return new Solution();// Empty solution indicating failure
     }
 
-    private Solution traceSolution(String finalState) {
-        ArrayList<String> solutionList = new ArrayList<>();
-        // TODO: Trace solution
-        return null;
+    private Solution traceSolution(String finalState, HashMap<String, String> parentMap) {
+        /* Reconstruct solution from parents */
+        Stack<String> solutionStack = new Stack<>();
+
+        String currentState = finalState;
+        while (currentState != null) {
+            solutionStack.add(currentState);
+            currentState = parentMap.get(currentState);
+        }
+
+        /* Generate the solutionArray */
+        String[] solutionArray = new String[solutionStack.size()];
+        for (int i = 0; i < solutionStack.size(); i++) {
+            solutionArray[i] = solutionStack.pop();
+        }
+
+        return new Solution(solutionArray);
     }
 }
