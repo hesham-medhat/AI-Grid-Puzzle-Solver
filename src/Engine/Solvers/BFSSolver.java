@@ -6,6 +6,11 @@ import Engine.Solver;
 import java.util.*;
 
 public class BFSSolver extends Solver {
+    /* Instance Variables */
+    private long startTimeMillis;
+
+    private int nodesExpanded = 0;
+
     /* Constructors */
 
     public BFSSolver(int rowDimension, int columnDimension) {
@@ -22,6 +27,9 @@ public class BFSSolver extends Solver {
     @Override
     public Solution solve(String startingState) {
         /* Initialization */
+        nodesExpanded = 0;
+        startTimeMillis = System.currentTimeMillis();
+
         Queue<String> queue = new LinkedList<>();
         HashMap<String, String> visitedBy;// Hash map mapping a visited state node to its parent.
         visitedBy = new HashMap<>();
@@ -35,6 +43,7 @@ public class BFSSolver extends Solver {
         String currentState, nextState;
         int zeroIndex, zeroRow, zeroColumn;
         while (!queue.isEmpty()) {
+            nodesExpanded++;
             currentState = queue.poll();
 
             zeroIndex = currentState.indexOf('0');
@@ -101,6 +110,8 @@ public class BFSSolver extends Solver {
             solutionArray[i] = solutionStack.pop();
         }
 
-        return new Solution(solutionArray);
+        long runningTime = System.currentTimeMillis() - startTimeMillis;
+
+        return new Solution(solutionArray, solutionArray.length, nodesExpanded, solutionArray.length, runningTime);
     }
 }
