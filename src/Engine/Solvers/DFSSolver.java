@@ -18,6 +18,10 @@ public class DFSSolver extends Solver {
 
     private String[] solutionArray;
 
+    private int nodesExpanded;
+
+    private int searchDepth;
+
 
     /* Constructors */
     public DFSSolver(int rowDimension, int columnDimension) {
@@ -36,6 +40,9 @@ public class DFSSolver extends Solver {
         /* Initialization */
         solutionArray = null;
         visited = new HashSet<String>();
+        nodesExpanded = searchDepth = 0;
+
+        long startTimeMillis = System.currentTimeMillis();
 
         solveRecursively(state, 1);
 
@@ -43,7 +50,10 @@ public class DFSSolver extends Solver {
             return new Solution();// Return empty solution indicating failure
         }
         solutionArray[0] = state;
-        return new Solution(solutionArray);
+
+        long runningTimeMillis = System.currentTimeMillis() - startTimeMillis;
+
+        return new Solution(solutionArray, solutionArray.length, nodesExpanded, searchDepth, runningTimeMillis);
     }
 
     /**
@@ -52,6 +62,9 @@ public class DFSSolver extends Solver {
      * @return Success (true) or failure (false)
      */
     private boolean solveRecursively (String state, int depth) {
+        nodesExpanded++;
+        searchDepth = Math.max(searchDepth, depth);
+
         if (isSolution(state)) {// Initiate building the solution
             solutionArray = new String[depth + 1];
             solutionArray[depth] = state;
