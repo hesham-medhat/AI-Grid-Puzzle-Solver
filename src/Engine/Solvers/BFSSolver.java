@@ -1,4 +1,7 @@
-package Engine;
+package Engine.Solvers;
+
+import Engine.Solution;
+import Engine.Solver;
 
 import java.util.*;
 
