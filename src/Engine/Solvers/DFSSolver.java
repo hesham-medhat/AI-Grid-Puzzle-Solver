@@ -14,6 +14,7 @@ public class DFSSolver extends Solver {
         super(rowDimension, columnDimension, agentName);
     }
 
+
     /* Core Methods */
     @Override
     public Solution solve(String state) {
