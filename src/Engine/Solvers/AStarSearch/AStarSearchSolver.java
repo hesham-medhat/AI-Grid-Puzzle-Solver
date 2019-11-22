@@ -73,7 +73,7 @@ public class AStarSearchSolver extends Solver {
             zeroRow = getRowCoordinate(zeroIndex);
 
             if (currentFrontierNode.getPredictedCost() == 0) { // Goal state to process
-                traceSolution(currentState, visitedBy);
+                return traceSolution(currentState, visitedBy);
             }
 
 

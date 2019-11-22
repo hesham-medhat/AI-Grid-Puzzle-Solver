@@ -36,7 +36,7 @@ public class BFSSolver extends Solver {
 
         visitedBy.put(startingState, null);
         if (isSolution(startingState)) {
-            traceSolution(startingState, visitedBy);
+            return traceSolution(startingState, visitedBy);
         }
         queue.add(startingState);
 
