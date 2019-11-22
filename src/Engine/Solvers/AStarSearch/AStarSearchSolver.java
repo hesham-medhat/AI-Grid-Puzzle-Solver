@@ -92,7 +92,7 @@ public class AStarSearchSolver extends Solver {
 
                     frontierSet.put(nextState, nextStateFrontierNode);
                     frontierNodes.add(nextStateFrontierNode);
-                } else if (nextStateFrontierNode != null && nextStateFrontierNode.getDepth() > childDepth) {
+                } else if (nextStateFrontierNode.getDepth() > childDepth) {
                     frontierNodes.remove(nextStateFrontierNode);
 
                     frontierSet.put(nextState, nextStateFrontierNode);
@@ -112,7 +112,7 @@ public class AStarSearchSolver extends Solver {
 
                     frontierSet.put(nextState, nextStateFrontierNode);
                     frontierNodes.add(nextStateFrontierNode);
-                } else if (nextStateFrontierNode != null && nextStateFrontierNode.getDepth() > childDepth) {
+                } else if (nextStateFrontierNode.getDepth() > childDepth) {
                     frontierNodes.remove(nextStateFrontierNode);
 
                     frontierSet.put(nextState, nextStateFrontierNode);
@@ -132,7 +132,7 @@ public class AStarSearchSolver extends Solver {
 
                     frontierSet.put(nextState, nextStateFrontierNode);
                     frontierNodes.add(nextStateFrontierNode);
-                } else if (nextStateFrontierNode != null && nextStateFrontierNode.getDepth() > childDepth) {
+                } else if (nextStateFrontierNode.getDepth() > childDepth) {
                     frontierNodes.remove(nextStateFrontierNode);
 
                     frontierSet.put(nextState, nextStateFrontierNode);
@@ -152,7 +152,7 @@ public class AStarSearchSolver extends Solver {
 
                     frontierSet.put(nextState, nextStateFrontierNode);
                     frontierNodes.add(nextStateFrontierNode);
-                } else if (nextStateFrontierNode != null && nextStateFrontierNode.getDepth() > childDepth) {
+                } else if (nextStateFrontierNode.getDepth() > childDepth) {
                     frontierNodes.remove(nextStateFrontierNode);
 
                     frontierSet.put(nextState, nextStateFrontierNode);
@@ -160,7 +160,6 @@ public class AStarSearchSolver extends Solver {
                 }
             }
         }
-
 
         return new Solution();// Return empty solution for failure
     }
