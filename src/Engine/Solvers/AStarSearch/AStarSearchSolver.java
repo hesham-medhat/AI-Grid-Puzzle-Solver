@@ -13,7 +13,10 @@ public class AStarSearchSolver extends Solver {
 
     private int nodesExpanded = 0;
 
+    private int maxDepth = 0;
+
     private HeuristicStrategy heuristicStrategy;
+
 
 
     /* Constructors */
@@ -41,8 +44,7 @@ public class AStarSearchSolver extends Solver {
 
         nodesExpanded = 0;
         startTimeMillis = System.currentTimeMillis();
-
-        int maxDepth = 0;
+        maxDepth = 0;
 
         HashMap<String, AStarSearchFrontierNode> frontierSet = new HashMap<>();
         PriorityQueue<AStarSearchFrontierNode> frontierNodes = new PriorityQueue<>();
@@ -53,6 +55,7 @@ public class AStarSearchSolver extends Solver {
         /* Build start state */
         AStarSearchFrontierNode startNode = new AStarSearchFrontierNode(0,
                 heuristicStrategy.calculateHeuristic(startingState), startingState, null);
+        frontierNodes.add(startNode);
 
         /* Prepare loop variables */
         int zeroIndex, zeroRow, zeroColumn, childDepth;
@@ -164,6 +167,7 @@ public class AStarSearchSolver extends Solver {
 
     private Solution traceSolution(String finalState, HashMap<String, String> parentMap) {
         /* Reconstruct solution from parents */
+
         Stack<String> solutionStack = new Stack<>();
 
         String currentState = finalState;
@@ -180,6 +184,6 @@ public class AStarSearchSolver extends Solver {
 
         long runningTime = System.currentTimeMillis() - startTimeMillis;
 
-        return new Solution(solutionArray, solutionArray.length, nodesExpanded, solutionArray.length, runningTime);
+        return new Solution(solutionArray, solutionArray.length, nodesExpanded, maxDepth, runningTime);
     }
 }
