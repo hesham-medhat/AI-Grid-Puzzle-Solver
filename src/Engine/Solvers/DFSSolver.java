@@ -3,18 +3,12 @@ package Engine.Solvers;
 import Engine.Solution;
 import Engine.Solver;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class DFSSolver extends Solver {
     /* Instance Variables */
 
-    HashSet<String> visited = new HashSet<>();
-
-    /**
-     * Maps state to its parent for backtracking.
-     */
-    HashMap<String, String> stateParent;
+    private HashSet<String> visited = new HashSet<>();
 
     private String[] solutionArray;
 
@@ -24,6 +18,7 @@ public class DFSSolver extends Solver {
 
 
     /* Constructors */
+
     public DFSSolver(int rowDimension, int columnDimension) {
         super(rowDimension, columnDimension);
         agentName = "DFS Solver";
