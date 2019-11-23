@@ -35,7 +35,7 @@ public abstract class PositionalDifferenceHeuristicStrategy extends HeuristicStr
             Character block = state.charAt(i);
             Pair<Integer, Integer> goalPosition = finalPositionMap.get(block);
 
-            distance = calculateHeuristicDistanceFromIndex(i, goalPosition);
+            distance += calculateHeuristicDistanceFromIndex(i, goalPosition);
         }
 
         return distance;

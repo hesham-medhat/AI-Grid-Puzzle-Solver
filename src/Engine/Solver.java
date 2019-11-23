@@ -110,7 +110,7 @@ public abstract class Solver {
             throw new IllegalArgumentException("Passed state as null");
         }
 
-        if (zeroColumn == 0) {
+        if (zeroColumn == columnDimension - 1) {
             return null;// Invalid move
         }
         return moveBlockCoordinates(state, zeroRow, zeroRow, zeroColumn + 1, zeroColumn );

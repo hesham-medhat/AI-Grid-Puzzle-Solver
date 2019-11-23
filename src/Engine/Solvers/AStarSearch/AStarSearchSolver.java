@@ -72,7 +72,7 @@ public class AStarSearchSolver extends Solver {
             zeroColumn = getColumnCoordinate(zeroIndex);
             zeroRow = getRowCoordinate(zeroIndex);
 
-            if (currentFrontierNode.getPredictedCost() == 0) { // Goal state to process
+            if (currentFrontierNode.getPredictedCost() == currentFrontierNode.getDepth()) { // Goal state to process
                 return traceSolution(currentState, visitedBy);
             }
 
@@ -183,6 +183,6 @@ public class AStarSearchSolver extends Solver {
 
         long runningTime = System.currentTimeMillis() - startTimeMillis;
 
-        return new Solution(solutionArray, solutionArray.length, nodesExpanded, maxDepth, runningTime);
+        return new Solution(solutionArray, solutionArray.length - 1, nodesExpanded, maxDepth, runningTime);
     }
 }

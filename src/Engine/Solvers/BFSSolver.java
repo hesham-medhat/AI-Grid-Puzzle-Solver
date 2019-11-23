@@ -112,6 +112,7 @@ public class BFSSolver extends Solver {
 
         long runningTime = System.currentTimeMillis() - startTimeMillis;
 
-        return new Solution(solutionArray, solutionArray.length, nodesExpanded, solutionArray.length, runningTime);
+        return new Solution(solutionArray, solutionArray.length - 1, nodesExpanded,
+                solutionArray.length - 1, runningTime);
     }
 }
