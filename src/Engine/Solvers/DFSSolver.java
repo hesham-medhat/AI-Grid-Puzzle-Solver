@@ -48,7 +48,7 @@ public class DFSSolver extends Solver {
 
         long runningTimeMillis = System.currentTimeMillis() - startTimeMillis;
 
-        return new Solution(solutionArray, solutionArray.length, nodesExpanded, searchDepth, runningTimeMillis);
+        return new Solution(solutionArray, solutionArray.length - 1, nodesExpanded, searchDepth, runningTimeMillis);
     }
 
     /**
