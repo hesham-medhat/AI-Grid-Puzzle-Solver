@@ -177,7 +177,7 @@ public class AStarSearchSolver extends Solver {
 
         /* Generate the solutionArray */
         String[] solutionArray = new String[solutionStack.size()];
-        for (int i = 0; i < solutionStack.size(); i++) {
+        for (int i = 0; !solutionStack.empty(); i++) {
             solutionArray[i] = solutionStack.pop();
         }
 
