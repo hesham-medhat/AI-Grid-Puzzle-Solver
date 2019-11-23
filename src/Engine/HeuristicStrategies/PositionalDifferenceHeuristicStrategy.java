@@ -28,6 +28,28 @@ public abstract class PositionalDifferenceHeuristicStrategy extends HeuristicStr
         }
     }
 
+    @Override
+    public int calculateHeuristic(String state) {
+        int distance = 0;
+        for (int i = 0; i < state.length(); i++) {
+            Character block = state.charAt(i);
+            Pair<Integer, Integer> goalPosition = finalPositionMap.get(block);
+
+            distance = calculateHeuristicDistanceFromIndex(i, goalPosition);
+        }
+
+        return distance;
+    }
+
+    private int calculateHeuristicDistanceFromIndex(int indexPosition, Pair<Integer, Integer> finalPosition) {
+        return calculateHeuristicDistanceFromCoordinates(
+                new Pair<Integer, Integer>(getRowCoordinate(indexPosition), getColumnCoordinate(indexPosition)),
+                finalPosition);
+    }
+
+    protected abstract int calculateHeuristicDistanceFromCoordinates(Pair<Integer, Integer> currentPosition,
+                                                                  Pair<Integer, Integer> finalPosition);
+
     protected int getRowCoordinate(int index) {
         return index / columnDimension;
     }
