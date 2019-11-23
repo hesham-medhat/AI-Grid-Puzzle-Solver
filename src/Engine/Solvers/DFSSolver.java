@@ -39,7 +39,7 @@ public class DFSSolver extends Solver {
 
         long startTimeMillis = System.currentTimeMillis();
 
-        solveRecursively(state, 1);
+        solveRecursively(state, 0);
 
         if (solutionArray == null) {// Did not solve
             return new Solution();// Return empty solution indicating failure
@@ -57,7 +57,6 @@ public class DFSSolver extends Solver {
      * @return Success (true) or failure (false)
      */
     private boolean solveRecursively (String state, int depth) {
-        nodesExpanded++;
         searchDepth = Math.max(searchDepth, depth);
 
         if (isSolution(state)) {// Initiate building the solution
@@ -66,6 +65,7 @@ public class DFSSolver extends Solver {
             return true;
         }
 
+        nodesExpanded++;
         visited.add(state);
 
         int zeroIndex = state.indexOf('0');

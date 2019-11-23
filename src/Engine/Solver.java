@@ -157,4 +157,8 @@ public abstract class Solver {
     public void setAgentName(String agentName) {
         this.agentName = agentName;
     }
+
+    public String getSolutionState() {
+        return solutionState;
+    }
 }
