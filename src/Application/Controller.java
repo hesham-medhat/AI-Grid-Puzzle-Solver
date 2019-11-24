@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class Controller {
@@ -28,6 +29,9 @@ public class Controller {
 
     @FXML
     private TextArea startStateTextArea;
+
+    @FXML
+    private TextArea goalStateTextArea;
 
     @FXML
     private Button grid0;
@@ -54,19 +58,41 @@ public class Controller {
     Solution sol;
 
     @FXML
-    private void next() {
-        if (currentState + 1 < sol.getPath().length) {
-            currentState += 1;
+    private void next(int steps) {
+        steps = Math.min(steps, sol.getPath().length - currentState - 1);
+        if (currentState + steps < sol.getPath().length) {
+            currentState += steps;
             renderState(sol.getPath()[currentState]);
         }
     }
 
     @FXML
-    private void prev() {
-        if (currentState > 0) {
-            currentState -= 1;
+    private void prev(int steps) {
+        steps = Math.min(steps, currentState);
+        if (currentState >= steps) {
+            currentState -= steps;
             renderState(sol.getPath()[currentState]);
         }
+    }
+
+    @FXML
+    private void nextOne() {
+        next(1);
+    }
+
+    @FXML
+    private void prevOne() {
+        prev(1);
+    }
+
+    @FXML
+    private void next10() {
+        next(10);
+    }
+
+    @FXML
+    private void prev10() {
+        prev(10);
     }
 
     @FXML
@@ -89,10 +115,26 @@ public class Controller {
         });
     }
 
+    @FXML
+    private TextField pathCostField;
+
+    @FXML
+    private TextField nodeExpandedField;
+
+    @FXML
+    private TextField searchDepthField;
+
+    @FXML
+    private TextField runningTimeField;
+
+    @FXML
+    private TextField runningTimeField1;
+
     private void renderState(String state) {
         for (int i = 0; i < state.length(); i++) {
             gridall[i].setText(String.valueOf(state.charAt(i)));
         }
+        runningTimeField1.setText(String.valueOf(currentState+1)+"/"+String.valueOf(sol.getPath().length));
     }
 
     @FXML
@@ -100,6 +142,10 @@ public class Controller {
         currentState = 0;
         Solver solver;
         String startState = startStateTextArea.getText();
+        String goalState = goalStateTextArea.getText();
+        if (goalState == null || goalState.isEmpty()) {
+            goalState = "012345678";
+        }
         switch (algorithmPicker.getValue()) {
             case "DFS":
                 solver = new DFSSolver(3, 3, "A");
@@ -109,17 +155,21 @@ public class Controller {
                 break;
             case "AStar Manhattan":
                 solver = new AStarSearchSolver(3, 3, "C",
-                        new ManhattanDistanceHeuristicStrategy(3, 3, "012345678"));
+                        new ManhattanDistanceHeuristicStrategy(3, 3, goalState));
                 break;
             case "AStar Euclidean":
                 solver = new AStarSearchSolver(3, 3, "D",
-                        new EuclideanDistanceHeuristicStrategy(3, 3, "012345678"));
+                        new EuclideanDistanceHeuristicStrategy(3, 3, goalState));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + algorithmPicker.getValue());
         }
 
         sol = solver.solve(startState);
+        pathCostField.setText(String.valueOf(sol.getPathCost()));
+        nodeExpandedField.setText(String.valueOf(sol.getNodesExpanded()));
+        searchDepthField.setText(String.valueOf(sol.getSearchDepth()));
+        runningTimeField.setText(String.valueOf(sol.getRunningTimeMillis()));
         renderState(startState);
     }
 }

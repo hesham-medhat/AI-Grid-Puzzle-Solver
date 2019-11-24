@@ -35,16 +35,13 @@
       <Button id="grid6" fx:id="grid6" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="6" GridPane.rowIndex="2" />
       <Button id="grid7" fx:id="grid7" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="7" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Button id="grid8" fx:id="grid8" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="8" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="318.0" text="Record Start State" GridPane.rowIndex="4" />
-      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Record Goal State" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextArea id="startStateTextArea" fx:id="startStateTextArea" prefHeight="25.0" prefWidth="66.0" promptText="Enter Start State Here" GridPane.rowIndex="3" />
       <TextArea id="goalStateTextArea" fx:id="goalStateTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Enter Goal State Here" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ChoiceBox id="algorithmPicker" fx:id="algorithmPicker" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Choose Algorithm" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <TextField editable="false" prefHeight="26.0" prefWidth="102.0" text="Cost of Path:" GridPane.columnIndex="3" />
       <TextField editable="false" text="Nodes Expanded:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <TextField editable="false" text="Search Depth:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <TextField editable="false" text="Running Time:" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <TextField editable="false" text="Running Time (ms):" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <Button fx:id="solveButton" mnemonicParsing="false" prefHeight="195.0" prefWidth="430.0" text="Solve!" GridPane.columnIndex="4" GridPane.rowIndex="4">
          <font>
             <Font size="32.0" />
@@ -54,10 +51,10 @@
       <TextField fx:id="nodeExpandedField" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
       <TextField fx:id="searchDepthField" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
       <TextField fx:id="runningTimeField" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Back 10 steps" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" onMouseClicked="#prev" prefHeight="46.0" prefWidth="150.0" text="Back 1 step" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" onMouseClicked="#next" prefHeight="46.0" prefWidth="150.0" text="Forward 1 step" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Forward 10 steps" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onMouseClicked="#prev10" prefHeight="46.0" prefWidth="150.0" text="Back 10 steps" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onMouseClicked="#prevOne" prefHeight="46.0" prefWidth="150.0" text="Back 1 step" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onMouseClicked="#nextOne" prefHeight="46.0" prefWidth="150.0" text="Forward 1 step" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onMouseClicked="#next10" prefHeight="46.0" prefWidth="150.0" text="Forward 10 steps" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <TextField fx:id="runningTimeField1" editable="false" promptText="Solution State Index" GridPane.columnIndex="4" GridPane.rowIndex="5" />
    </children>
 </GridPane>
