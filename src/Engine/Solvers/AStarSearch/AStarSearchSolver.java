@@ -67,6 +67,7 @@ public class AStarSearchSolver extends Solver {
             String currentState = currentFrontierNode.toString();
 
             visitedBy.put(currentState, currentFrontierNode.getParentState());// Add to explored state
+            maxDepth = Math.max(maxDepth, currentFrontierNode.getDepth());
 
             zeroIndex = currentState.indexOf('0');
             zeroColumn = getColumnCoordinate(zeroIndex);
