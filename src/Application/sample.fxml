@@ -1,8 +1,63 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="Application.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button id="grid0" fx:id="grid0" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="0" />
+      <Button id="grid1" fx:id="grid1" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="1" GridPane.columnIndex="1" />
+      <Button id="grid3" fx:id="grid3" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="3" GridPane.rowIndex="1" />
+      <Button id="grid4" fx:id="grid4" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button id="grid2" fx:id="grid2" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="2" GridPane.columnIndex="2" />
+      <Button id="grid5" fx:id="grid5" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button id="grid6" fx:id="grid6" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="6" GridPane.rowIndex="2" />
+      <Button id="grid7" fx:id="grid7" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="7" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button id="grid8" fx:id="grid8" mnemonicParsing="false" prefHeight="134.0" prefWidth="190.0" text="8" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="318.0" text="Record Start State" GridPane.rowIndex="4" />
+      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Record Goal State" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextArea id="startStateTextArea" fx:id="startStateTextArea" prefHeight="25.0" prefWidth="66.0" promptText="Enter Start State Here" GridPane.rowIndex="3" />
+      <TextArea id="goalStateTextArea" fx:id="goalStateTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Enter Goal State Here" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ChoiceBox id="algorithmPicker" fx:id="algorithmPicker" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Choose Algorithm" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <TextField editable="false" prefHeight="26.0" prefWidth="102.0" text="Cost of Path:" GridPane.columnIndex="3" />
+      <TextField editable="false" text="Nodes Expanded:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <TextField editable="false" text="Search Depth:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <TextField editable="false" text="Running Time:" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Button fx:id="solveButton" mnemonicParsing="false" prefHeight="195.0" prefWidth="430.0" text="Solve!" GridPane.columnIndex="4" GridPane.rowIndex="4">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Button>
+      <TextField fx:id="pathCostField" editable="false" GridPane.columnIndex="4" />
+      <TextField fx:id="nodeExpandedField" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <TextField fx:id="searchDepthField" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+      <TextField fx:id="runningTimeField" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Back 10 steps" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onMouseClicked="#prev" prefHeight="46.0" prefWidth="150.0" text="Back 1 step" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onMouseClicked="#next" prefHeight="46.0" prefWidth="150.0" text="Forward 1 step" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="150.0" text="Forward 10 steps" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <TextField fx:id="runningTimeField1" editable="false" promptText="Solution State Index" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+   </children>
 </GridPane>
